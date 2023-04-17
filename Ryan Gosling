@@ -1,0 +1,17 @@
+import telebot
+
+TOKEN = "6148075325:AAHY1CZ0FKfT8In7yfYUc4s4cQcNIVikeUM"
+bot = telebot.TeleBot(TOKEN)
+
+@bot.message_handler(commands=['start'])
+def send_welcome(message):
+    bot.send_message(message.chat.id, "Привет! Я бот, который отправляет фото с Райаном Гослингом. Введите /photo, чтобы получить фотографию.")
+
+
+@bot.message_handler(commands=['photo'])
+def send_photo(message):
+    with open("photo1681586491.jpeg", "rb") as photo:
+        bot.send_photo(message.chat.id, photo)
+
+if __name__ == '__main__':
+    bot.polling(none_stop=True)
